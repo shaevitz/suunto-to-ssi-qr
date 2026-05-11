@@ -23,8 +23,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Prepare static site
+        run: |
+          mkdir -p _site/assets _site/vendor
+          cp index.html app.mjs web-core.mjs styles.css sw.js manifest.webmanifest _site/
+          cp assets/icon.svg _site/assets/
+          cp vendor/qrcode.js _site/vendor/
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: web
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

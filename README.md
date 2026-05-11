@@ -1,88 +1,51 @@
 # Suunto to SSI QR
 
-A small native macOS app that converts Suunto dive computer `.fit` exports into
-QR codes that can be scanned by the MySSI / SSI iPhone app.
+A small browser app that converts Suunto dive computer `.fit` exports into QR
+codes that can be scanned by the MySSI / SSI app.
 
-The app extracts the dive start time, duration, max depth, and water
-temperature from the FIT file, then writes:
+Live app:
 
-- `<dive-name>_ssi_qr.png`
-- `<dive-name>_ssi_payload.txt`
+https://shaevitz.github.io/suunto-to-ssi-qr/
 
-The files are saved next to the selected FIT file.
-
-## Download and Install
-
-Download `SuuntoToSSIQR-mac.zip` from the GitHub release, unzip it, and drag
-`Suunto to SSI QR.app` into `/Applications`.
-
-This app is unsigned and not notarized. On first launch, macOS Gatekeeper may
-block it. Use Finder to right-click the app, choose **Open**, then confirm.
+The app runs fully in the browser. It does not upload FIT files anywhere.
 
 ## Use
 
-1. Open `Suunto to SSI QR.app`.
-2. Choose or drop a Suunto `.fit` dive export.
-3. Scan the generated QR PNG with the SSI app, or transfer the PNG to your
-   phone and scan it there.
+1. Open the live app in a browser.
+2. Choose a Suunto `.fit` dive export.
+3. The app generates an SSI-compatible QR code locally.
+4. Scan the QR code with the SSI app.
 
-## iPhone Browser App
+On iPhone or Android, you can add the page to your home screen from the browser
+share menu. After the first load, the service worker caches the app for offline
+use.
 
-The `web/` folder is a static browser app that runs fully on-device. It does
-not upload FIT files anywhere.
+## Camera Scanner Limitation
+
+If the SSI app only supports live camera scanning and does not support importing
+a QR image from Photos or Files, one phone cannot scan a QR code displayed on
+its own screen. In that case, show the generated QR code on another device,
+print it, or use another nearby phone as the display.
+
+## Local Development
 
 Local test:
 
 ```bash
-cd web
+npm install
+npm test
 python3 -m http.server 8080
 ```
 
-Then open `http://localhost:8080` on a Mac, or use the Mac's local network URL
-from an iPhone on the same Wi-Fi.
+Then open `http://localhost:8080`.
 
 GitHub Pages deployment:
 
 1. Push this repository to GitHub.
 2. In repository settings, enable **Pages** and select **GitHub Actions** as
    the source.
-3. The included `.github/workflows/pages.yml` workflow publishes the `web/`
-   folder whenever `main` is pushed.
-4. Open the Pages URL on iPhone Safari.
-5. Tap **Share** then **Add to Home Screen**.
-
-The browser app can choose a `.fit` file from Files/iCloud, generate the QR on
-the phone, display it, and share/download the PNG.
-
-Live browser app:
-
-https://shaevitz.github.io/suunto-to-ssi-qr/
-
-## Build From Source
-
-Requirements:
-
-- macOS 14 or newer
-- Xcode command line tools
-
-Build and test:
-
-```bash
-swift test
-swift build -c release
-```
-
-Build the distributable app zip:
-
-```bash
-./scripts/build-mac-app.sh
-```
-
-The release artifact is written to:
-
-```text
-dist/SuuntoToSSIQR-mac.zip
-```
+3. The included `.github/workflows/pages.yml` workflow publishes the browser app
+   whenever `main` is pushed.
 
 ## FIT and SSI Format Notes
 
