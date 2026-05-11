@@ -1,0 +1,174 @@
+:root {
+  color-scheme: light;
+  --accent: #0f766e;
+  --ink: #16211f;
+  --muted: #65716f;
+  --line: #cfd8d5;
+  --surface: #f4f8f7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #ffffff;
+  color: var(--ink);
+  font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.app {
+  width: min(720px, 100%);
+  margin: 0 auto;
+  padding: max(18px, env(safe-area-inset-top)) 18px max(24px, env(safe-area-inset-bottom));
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: clamp(30px, 8vw, 46px);
+  letter-spacing: 0;
+}
+
+h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.picker {
+  position: relative;
+  min-height: 150px;
+  border: 2px dashed var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  transition: border-color 120ms ease, background 120ms ease;
+}
+
+.picker.dragging {
+  border-color: var(--accent);
+  background: #e6f4f1;
+}
+
+.picker input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.picker label {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 22px;
+}
+
+.picker .icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.picker span:last-child,
+.status {
+  color: var(--muted);
+}
+
+.status {
+  min-height: 26px;
+  margin: 14px 0;
+}
+
+.result {
+  display: grid;
+  gap: 18px;
+}
+
+.hidden {
+  display: none;
+}
+
+.qr-card {
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+canvas {
+  width: min(100%, 360px);
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+button,
+.actions a {
+  flex: 1;
+  appearance: none;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  padding: 13px 14px;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 14px;
+  row-gap: 6px;
+  margin: 0;
+}
+
+dt {
+  color: var(--muted);
+}
+
+dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  font: 13px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--ink);
+}

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0f766e">
+    <title>Suunto to SSI QR</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <div>
+          <h1>Suunto to SSI QR</h1>
+          <p>Convert a Suunto dive FIT export into an SSI scan code on this device.</p>
+        </div>
+      </header>
+
+      <section class="picker" id="drop-zone">
+        <input id="fit-input" type="file" accept=".fit,application/octet-stream">
+        <label for="fit-input">
+          <span class="icon">+</span>
+          <strong>Choose FIT File</strong>
+          <span>or drop one here</span>
+        </label>
+      </section>
+
+      <section class="status" id="status" aria-live="polite">
+        No file selected.
+      </section>
+
+      <section class="result hidden" id="result">
+        <div class="qr-card">
+          <canvas id="qr-canvas" aria-label="SSI QR code"></canvas>
+        </div>
+
+        <div class="actions">
+          <button id="share-button" type="button">Share QR</button>
+          <a id="download-link" download="ssi-dive-qr.png">Download PNG</a>
+        </div>
+
+        <section>
+          <h2>Dive</h2>
+          <dl id="summary"></dl>
+        </section>
+
+        <section>
+          <h2>SSI Payload</h2>
+          <textarea id="payload" readonly rows="4"></textarea>
+        </section>
+      </section>
+    </main>
+
+    <script src="vendor/qrcode.js"></script>
+    <script type="module" src="app.mjs"></script>
+  </body>
+</html>

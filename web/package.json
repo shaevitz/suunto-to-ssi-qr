@@ -1,0 +1,25 @@
+{
+  "name": "suunto-to-ssi-qr-web",
+  "version": "1.0.0",
+  "description": "Static iPhone-friendly browser app for converting Suunto FIT dive exports to SSI QR codes.",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node --test test/web-core.test.mjs",
+    "serve": "python3 -m http.server 8080"
+  },
+  "keywords": [
+    "suunto",
+    "ssi",
+    "scuba",
+    "fit",
+    "qrcode"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "qrcode-generator": "^1.4.4"
+  }
+}
