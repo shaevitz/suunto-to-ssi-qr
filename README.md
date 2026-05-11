@@ -54,6 +54,10 @@ GitHub Pages deployment:
 The browser app can choose a `.fit` file from Files/iCloud, generate the QR on
 the phone, display it, and share/download the PNG.
 
+Live browser app:
+
+https://shaevitz.github.io/suunto-to-ssi-qr/
+
 ## Build From Source
 
 Requirements:
@@ -93,3 +97,7 @@ Current payload fields:
 - dive duration in minutes
 - max depth in meters
 - min/max water temperature when present
+
+## License
+
+MIT. See [LICENSE](LICENSE).
